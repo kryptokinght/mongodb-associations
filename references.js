@@ -26,9 +26,9 @@ var userSchema = new mongoose.Schema({
 });
 var User = mongoose.model('User', userSchema);
 
-Post.create({
-    title: "Create polyjuice potion",
-    body: "Secretes to create potion is in my uw."
+/*Post.create({
+    title: "Fall in love with Ron",
+    body: "Ron Weasely is a weasel."
 }, (err, post) => {
     User.findOne({email:"hemaG@hogwarts.edu"}, (err, foundUser) => {
         if(err)
@@ -43,9 +43,15 @@ Post.create({
             })
         }
     });        
-});
+});*/
 
-
+//search for a user and show its posts
+User.findOne({email:"hemaG@hogwarts.edu"}).populate("posts").exec((err, foundUser) => {
+    if(err)
+        console.log(err);
+    else
+        console.log(foundUser);
+})
 
 
 /*
