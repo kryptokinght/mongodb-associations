@@ -1,30 +1,8 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/blog_demo');
 
-//POST = title, body
-var postSchema = new mongoose.Schema({
-    title: String,
-    body: String
-});
-var Post = mongoose.model('Post', postSchema);  
-
-//USER = email, name
-/*var userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    posts:[postSchema]
-});*/
-var userSchema = new mongoose.Schema({
-    email: String,
-    name: String,
-    posts:[
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Post"
-        }
-    ]
-});
-var User = mongoose.model('User', userSchema);
+const Post = require('./models/post');
+const User = require('./models/user');
 
 /*Post.create({
     title: "Fall in love with Ron",
